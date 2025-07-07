@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: #fff;
+}
+
+img.logo {
+    width: 100px;
+    border-radius: 10px;
+}
+
+.nav-items >ul {
+    display: flex;
+    gap: 4rem;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
+    list-style-type: none;
+}
+
+/* Body CSS */
+
+.body {
+    margin: 30px;
+
+}
+
+.search {
+    padding: 20px;
+}
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-start;
+}
+.res-card {
+    width: 200px;
+    height: auto;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.res-card:hover {
+        box-shadow: 0px 0px 6px #0006;
+        cursor: pointer;
+}
+.res-card p { margin: 0;}
+.res-card h3 {margin: 10px;}
+.res-card .rating {display: flex; justify-content: space-between; width: 100%; font-weight: bold; }
+.res-card .rating > p{ color: green;}
+
+.filter-btn{
+    margin: 20px ;
+    padding: 10px;
+    cursor: pointer;
+}
