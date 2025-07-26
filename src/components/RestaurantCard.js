@@ -6,19 +6,19 @@ import { CDN_URL } from "../utils/constant";
     const slaString = sla?.slaString;
        
     return(
-        <div className="res-card">
+        <div className="w-70 p-2 min-h-110 bg-gray-110 hover:bg-gray-200 hover:shadow-xl rounded-xl border-2 ">
             
-            <img src={CDN_URL + cloudinaryImageId} style={{width: "100%", maxWidth: "200px",height: "200px",
-    borderRadius: "10px"}}/>
-             <h3>{name}</h3>
-            <p>{cuisines.join(", ")}</p>
-            <h4>{costForTwo }</h4>
-            <div className="rating">
+            <img src={CDN_URL + cloudinaryImageId} className="rounded w-[100%] h-50 mb-2"/>
+             <h3 className="text-xl font-bold text-center">{name}</h3>
+              <div className="flex justify-between items-center m-4">
                 
-                <p>{avgRating} stars</p>
-                <p>{slaString}</p>
+                <p className="text-green-700 font-bold ">{avgRating} stars</p>
+                <p className=" font-bold">{slaString}</p>
                 
             </div>
+            <p className="mt-2 text-center">{cuisines.join(", ")}</p>
+            <h4 className=" text-center font-bold py-2">{costForTwo }</h4>
+           
             
            
         </div>
