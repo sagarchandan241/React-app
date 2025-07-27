@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
+  const [showIndex, setShowIndex] = useState(0);
     
     const {resId} = useParams();
     const resInfo = useRestaurantMenu(resId);
@@ -17,14 +19,19 @@ if(resInfo === null ){
   // ✅ Safe one-line destructuring for itemCards
   const { itemCards = [] } =
     resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card ?? {};
+ console.log(resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+   const categories = resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    (c) => 
+      c.card?.["card"]?.["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
 
      return (
-    <div className="res-menu-container">
-      <h1>{restaurantName}</h1>
-      <h2>{totalRatingsString}</h2>
+    <div className="my-0 mx-auto mt-4 text-center">
+      <h1 className="font-bold my-6 text-2xl">{restaurantName}</h1>
+      <h3 className="font-bold text-lg">{totalRatingsString}</h3>
       <div className="menu-list-container">
-        <ul>
+        {/* <ul>
           {itemCards.map((item) => {
             const info = item?.card?.info;
             return (
@@ -34,7 +41,18 @@ if(resInfo === null ){
               </li>
             );
           })}
-        </ul>
+        </ul> */}
+
+        { 
+          categories.map((category, index) => (<RestaurantCategory 
+            key={category?.card?.card?.categoryId}
+             data={category?.card?.card }
+             showItems = {index ===  showIndex }  
+             setShowIndex = {() =>
+              setShowIndex(index === showIndex ? null : index)}
+             
+             />))
+        }
       </div>
     </div>
   );

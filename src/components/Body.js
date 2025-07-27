@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withDiscountedLabel} from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -14,6 +14,8 @@ const Body = () => {
     const [listOfRestaurant, setlistOfRestaurant] = useState([]);
     const [filteredRestaurant , setfilteredRestaurant] = useState([]);
     const [text, setText] = useState("");
+
+    const RestaurantCardDiscount = withDiscountedLabel(RestaurantCard);
 
     useEffect(() => {
         fetchData();
@@ -58,7 +60,10 @@ const Body = () => {
 
                 {
                     filteredRestaurant.map(restaurant => (
-                        <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id} ><RestaurantCard  resData={restaurant} /></Link>
+                        <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id} >
+                            {restaurant.info.aggregatedDiscountInfoV3 ? <RestaurantCardDiscount  resData={restaurant} /> : <RestaurantCard resData={restaurant} />}
+                            
+                            </Link>
                     ))
                 }
                
